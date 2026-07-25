@@ -9,7 +9,7 @@ source.include_exts = py,png,jpg,kv,atlas,json
 
 version = 1.0
 
-requirements = python3,kivy
+requirements = python3==3.11,kivy
 
 orientation = portrait
 
@@ -17,7 +17,7 @@ fullscreen = 0
 
 android.api = 34
 android.minapi = 24
-android.ndk = 25b
+android.ndk = 25c
 android.archs = arm64-v8a,armeabi-v7a
 
 presplash.color = #FFFFFF
