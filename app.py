@@ -1,37 +1,8 @@
-name: Build APK
+from kivy.app import App
+from kivy.uix.label import Label
 
-on:
-  push:
-    branches:
-      - main
-  workflow_dispatch:
+class MyApp(App):
+    def build(self):
+        return Label(text="Hello from GitHub APK!")
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.11"
-
-      - name: Install Buildozer
-        run: |
-          sudo apt update
-          sudo apt install -y zip unzip openjdk-17-jdk python3-pip git
-          pip install --upgrade pip
-          pip install buildozer cython
-
-      - name: Build APK
-        run: |
-          buildozer android debug
-
-      - name: Upload APK
-        uses: actions/upload-artifact@v4
-        with:
-          name: apk
-          path: bin/*.apk
+MyApp().run()
