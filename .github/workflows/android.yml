@@ -12,9 +12,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: ArtemSBulgakov/buildozer-action@v1
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
 
-      - uses: actions/upload-artifact@v4
+      - name: Build APK
+        uses: ArtemSBulgakov/buildozer-action@v1
+        with:
+          command: buildozer android debug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
         with:
           name: apk
           path: bin/*.apk
